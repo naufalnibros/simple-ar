@@ -44,11 +44,16 @@ public class MainActivity extends AppCompatActivity implements
     private Renderable model;
     private ViewRenderable viewRenderable;
 
+    private DisclaimerFragment disclaimer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().addFragmentOnAttachListener(this);
+
+        disclaimer = new DisclaimerFragment();
+        disclaimer.show(getSupportFragmentManager(), disclaimer.getTag());
 
         if (savedInstanceState == null) {
             if (Sceneform.isSupported(this)) {
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements
 
         // Available modes: DEPTH_OCCLUSION_DISABLED, DEPTH_OCCLUSION_ENABLED
         arSceneView.getCameraStream()
-                .setDepthOcclusionMode(CameraStream.DepthOcclusionMode.DEPTH_OCCLUSION_ENABLED);
+                .setDepthOcclusionMode(CameraStream.DepthOcclusionMode.DEPTH_OCCLUSION_DISABLED);
     }
 
     @Override
